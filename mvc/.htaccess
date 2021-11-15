@@ -1,0 +1,24 @@
+AddDefaultCharset utf8
+
+php_flag magic_quotes_gpc Off
+php_flag magic_quotes_runtime Off
+
+<Files config.php>
+  deny from all
+</Files>
+
+# Don't show directory listings for URLs which map to a directory.
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?id=$1 [L,QSA]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*) https://%{SERVER_NAME}/$1 [R,L]
+</IfModule>
+
+ServerSignature Off
