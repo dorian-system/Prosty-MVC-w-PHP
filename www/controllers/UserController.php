@@ -1,32 +1,47 @@
 <?php
+/**
+ * Obsługuje akcje użytkownika
+ * 
+ * @package User
+ * @subpackage Controller
+ */
 require_once "{$config->APP_PATH}/models/UserModel.php";
 
 class UserController extends UserModel {
-	
+	/**
+     * Wyswietla użytkownika
+     * /admin/user
+	*/
 	function print_users($user_name, $user_pass){
 		$res = $this->return_users($user_name, $user_pass);
-		$row = mysql_fetch_assoc($res);
+		$row = mysqli_fetch_assoc($res);
 		return $row;	
 	}
 	
+	/**
+     * Wyswietla użytkowników
+     * /admin/user_list
+	*/
 	function list_users($where = ""){
 		$res = $this->select_users($where);
-		while ($row = mysql_fetch_array($res)) {
-			$cont[$row['id']]['id'] = $row['id'];
-			$cont[$row['id']]['user_name'] = $row['user_name'];
-			$cont[$row['id']]['user_pass'] = $row['user_pass'];
-			$cont[$row['id']]['user_email'] = $row['user_email'];
-		}
-		return $cont;		
+		$list_users = mysqli_fetch_all($res, MYSQLI_ASSOC);
+		return $list_users;		
 	}
 	
+	/**
+     * Czyszczenie zmiennej $_POST
+	*/
 	function post_data($post){
 		foreach($post as $key=>$value){
 			$aux_post[$key] = $value;		
 		}
-		$this->create($aux_post); //visilaem v bazu;	
+		$this->create($aux_post);
 	}
 	
+	/**
+     * Usuwa użytkownika
+     * /admin/user_list
+	*/
 	function del_user($id){
 		global $config;
 		$users = $this->list_users("WHERE id <> " . $id);

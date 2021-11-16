@@ -1,19 +1,42 @@
 <?php
+/**
+ * Klasa służąca do obsługi pobierania danych z bazy danych dla tabeli users
+ * 
+ * @package User
+ * @subpackage Model
+ */
+ 
 require_once "{$config->APP_PATH}/config/db.php";
 
-class UserModel extends Db {	
+class UserModel extends Db {
+		
+	/**
+     * Zwraca użytkownikauwzględniającą dodatkowe parametry
+     * string $user_name
+	 * string $user_pass
+     * @return res tablica obiektów
+     */
 	function return_users($user_name, $user_pass){
 		$sql = "select * from users WHERE user_name='{$user_name}' AND user_pass='" . md5($user_pass) . "'";
 		$result = $this->sql($sql);
 		return $result;	
 	}
 	
+	/**
+     * Zwraca listę użytkowników uwzględniającą dodatkowe parametry
+     * string $where
+     * @return result obiekt
+     */
 	function select_users($where = ""){
 		$sql = "select * from users " . $where;
 		$result = $this->sql($sql);
 		return $result;	
 	}
 	
+	/**
+     * Tworzy użytkownika
+     * array $post
+     */
 	function create($post){
 		global $config;
 		if ($post['id'] != null){
@@ -37,6 +60,10 @@ class UserModel extends Db {
 	return true;	
 	}
 	
+	 /**
+     * Usuwa użytkownika
+     * int $id identyfikator użytkownika
+     */
 	function del_from_users($id){
 		$sql = 'delete from users where id ='.$id;
 		$this->sql($sql);

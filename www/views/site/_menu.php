@@ -9,7 +9,7 @@ function view_menu($parent_id = 0, $class = "nav navbar-nav"){
 		echo "<ul class='{$class}'>";
 			foreach($v_menu_items as $item){
 				if($item['parent_id'] == $parent_id){
-					$active = ($_GET['id'] == $item['path'] ? "active" : null);
+					$active = ($_GET['id'] == $item['path'] || $_GET['id'] == null ? "active" : null);
 					echo "<li class='{$active}" . ($item['has_child'] ? " dropdown" : null) . "' >
 							<a " . ($item['has_child'] ? "class='dropdown-toggle' data-toggle='dropdown'" : null) . " href='{$config->APP_PATH}/{$item['path']}' title='{$item['description']}'>
 								{$item['title']}

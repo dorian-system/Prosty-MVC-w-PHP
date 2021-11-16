@@ -4,7 +4,6 @@ $cusers = new UserController();
 if($_GET['edit_user']){
 	$id = $_GET['edit_user'];
 	$user = $cusers->list_users("where id=" . $id);
-	
 }else{
 	
 }
@@ -23,7 +22,7 @@ if($_GET['edit_user']){
 	
 	<!-- Name -->
     <label for="user_name" >Nazwa*</label>
-	<input style="width:50%" class="form-control" type="text" placeholder="Nazwa" name="user_name" value ="<?=$user[$id]['user_name'];?>" required />
+	<input style="width:50%" class="form-control" type="text" placeholder="Nazwa" name="user_name" value ="<?=$user[0]['user_name'];?>" required />
 	<br />
 	<!-- Pass -->
     <label for="user_pass" >Hasło*</label>
@@ -31,7 +30,7 @@ if($_GET['edit_user']){
 	<br />
 	<!-- Path -->
 	<label for="user_email">E-mail*</label>
-	<input style="width:50%" class="form-control" type="email" placeholder="E-mail" name="user_email" value ="<?=$user[$id]['user_email'];?>" required />
+	<input style="width:50%" class="form-control" type="email" placeholder="E-mail" name="user_email" value ="<?=$user[0]['user_email'];?>" required />
 	<br />
 	<!-- Save -->
 	<div class="row">

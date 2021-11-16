@@ -4,13 +4,12 @@ require_once "{$config->APP_PATH}/controllers/MenuController.php";
 $v_menu_items_edit = $aux_vmenu->print_menu_items("");
 
 if($_GET['edit_menu']){
-	//esli najimaem na edit
 	$id = $_GET['edit_menu'];
 	$parent_id = $v_menu_items_edit[$id]['parent_id'];
 	$last = $v_menu_items_edit[$id]['position'];
 }else{
+	$last = $aux_vmenu->return_menu_last_pos();
 	$np = "Żaden rodzic"; 
-	$last = $aux_vmenu->return_menu_last_pos(); 
 }
 ?>
 

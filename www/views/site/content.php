@@ -96,6 +96,9 @@ if(!$page['alt_title']){
 				<?php if ($page['lastmod']): ?>
 					<span class="label label-default">Uaktualniono: <?=$page['lastmod']?></span>
 				<?php endif ?>
+				<?php if ($page['category']): ?>
+					<span class="label label-default">Kategoria: <?=$page['category']?></span>
+				<?php endif ?>
 			</div>
 			
 			<div class="col-sm-2 sidenav">

@@ -1,9 +1,8 @@
 <?php
 if($_GET['edit']){
-	//esli najimaem na edit
-$editpage = new CreateEditContentController();
-$id = $_GET['edit'];
-$cont = $editpage->print_pageedit($id);
+	$editpage = new CreateEditContentController();
+	$id = $_GET['edit'];
+	$cont = $editpage->print_pageedit($id);
 } else {$np = "New position";}
 ?>
 
@@ -18,11 +17,6 @@ $cont = $editpage->print_pageedit($id);
 	<input style="width:50%" class="form-control" type="text" placeholder="Tytuł" name="title" value ="<?=$cont['title'];?>" required />
 	<em class="text-info">Użyć maksymalnie 60 znaków w tytule.</em>
 	<br />
-	<!-- Alternatywy title -->
-	<label for="alt_title" >Alternatywy tytuł</label>
-	<input style="width:50%" class="form-control" type="text" placeholder="Alternatywy tytuł" name="alt_title" value ="<?=$cont['alt_title'];?>" required />
-	<em class="text-info">Użyć maksymalnie 60 znaków w tytule.</em>
-	<br />
 	<!-- Path -->
 	<label for="path">Ścieżka*</label>
 	<input style="width:50%" class="form-control" type="text" placeholder="Ścieżka" name="path" value ="<?=$cont['path'];?>" required />
@@ -34,10 +28,6 @@ $cont = $editpage->print_pageedit($id);
 	</script>
 	<textarea name="content" id="editor" ><?=$cont['content'];?></textarea>
 	<br />
-	<!-- Booksy id -->
-	<label for="booksy_id">Booksy id</label>
-	<input style="width:50%" class="form-control" type="text" placeholder="Booksy id" name="booksy_id" value ="<?=$cont['booksy_id'];?>" />
-	<br />
 	<!-- Visible -->
 	<label for="visible">Opcje publikacji</label>
 	<select name="visible" class="form-control" style="width:auto" > 
@@ -48,14 +38,6 @@ $cont = $editpage->print_pageedit($id);
 	<!-- Category -->
 	<label for="category">Kategoria</label>
 	<input class="form-control" name="category"  value="<?=$cont['category'];?>" />
-	<br />
-	<!-- Image -->
-	<label for="image">Obraz</label>
-	<input class="form-control" name="image"  value="<?=$cont['image'];?>" />
-	<br />
-	<!-- alt_description -->
-	<label for="alt_description">Alternatywy opis</label>
-	<input class="form-control" name="alt_description"  value="<?=$cont['alt_description'];?>" />
 	<br />
 	<!-- Description -->
 	<label for="description">Opis</label>
